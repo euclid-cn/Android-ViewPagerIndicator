@@ -89,7 +89,7 @@ public class CirclePageIndicator extends View implements PageIndicator {
 
     /*
      * (non-Javadoc)
-     *
+     *	主要方法
      * @see android.view.View#onDraw(android.graphics.Canvas)
      */
     @Override
