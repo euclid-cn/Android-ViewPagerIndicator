@@ -69,6 +69,7 @@ public class CirclePageIndicator extends View implements PageIndicator {
         final float defaultRadius = DEFAULT_RADIUS_DP * density;
 
         // Retrieve styles attributs
+        // 获取自定义属性
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.CircleFlowIndicator);
 
         // Retrieve the colors to be used for this view and apply them.
