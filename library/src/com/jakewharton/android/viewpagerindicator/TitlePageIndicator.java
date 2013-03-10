@@ -282,6 +282,7 @@ public class TitlePageIndicator extends TextView implements PageIndicator {
         Rect bounds = new Rect();
         bounds.right = (int) paint.measureText(title);
         bounds.bottom = (int) (paint.descent()-paint.ascent());
+        //height = paint.getFontSpacing();
         return bounds;
     }
 
@@ -310,7 +311,7 @@ public class TitlePageIndicator extends TextView implements PageIndicator {
         }
         mViewPager = view;
         mViewPager.setOnPageChangeListener(this);
-        mTitleProvider = (TitleProvider)mViewPager.getAdapter();
+        mTitleProvider = (TitleProvider)mViewPager.getAdapter();//viewpager 的adapter必须实现TitleProvider接口
         invalidate();
     }
 

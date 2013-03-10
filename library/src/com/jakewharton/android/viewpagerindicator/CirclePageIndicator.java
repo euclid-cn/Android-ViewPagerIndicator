@@ -154,11 +154,19 @@ public class CirclePageIndicator extends View implements PageIndicator {
 
     /*
      * (non-Javadoc)
-     *
+     *实现onMeasure()方法基本需要完成下面三个方面的事情(最终结果是你自己写相应代码得出测量值并调用view的一个方法进行设置,
+     *告诉给你的view安排位置大小的父容器你要多大的空间.):
      * @see android.view.View#onMeasure(int, int)
      */
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+    	/**
+    	 * 1.传递进来的参数,widthMeasureSpec,和heightMeasureSpec是你对你应该得出来的测量值的限制.
+    	 * 
+    	 * 2. 你在onMeasure计算出来设置的width和height将被用来渲染组件.应当尽量在传递进来的width和height 声明之间.
+虽然你也可以选择你设置的尺寸超过传递进来的声明.但是这样的话,父容器可以选择,如clipping,scrolling,或者抛出异常,或者(也许是用新的声明参数)再次调用onMeasure()
+		3.一但width和height计算好了,就应该调用View.setMeasuredDimension(int width,int height)方法,否则将导致抛出异常.
+    	 */
         setMeasuredDimension(measureWidth(widthMeasureSpec),
                 measureHeight(heightMeasureSpec));
     }
@@ -201,6 +209,12 @@ public class CirclePageIndicator extends View implements PageIndicator {
      * @return The height of the view, honoring constraints from measureSpec
      */
     private int measureHeight(int measureSpec) {
+    	//一个MeasureSpec是一个大小跟模式的组合值.一共有三种模式.
+    	/**
+    	 * (1)UPSPECIFIED :父容器对于子容器没有任何限制,子容器想要多大就多大.
+    	 * (2) EXACTLY 父容器已经为子容器设置了尺寸,子容器应当服从这些边界,不论子容器想要多大的空间.
+    	 * (3) AT_MOST 子容器可以是声明大小内的任意大小.
+    	 */
         int result = 0;
         int specMode = MeasureSpec.getMode(measureSpec);
         int specSize = MeasureSpec.getSize(measureSpec);
